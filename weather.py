@@ -14,7 +14,7 @@ def write_data(data,filename):
     with open(filename,'w') as f:
         json.dump(data,f)
 
-def max_temperture (data,date):
+def max_temperature (data,date):
     x = 0
     for key in data:
         if date == key[0:8]:
@@ -22,7 +22,7 @@ def max_temperture (data,date):
                 x = data [key] ['t']
     return x
 
-def min_temperture (data,date):
+def min_temperature (data,date):
     x = 1000000
     for key in data:
         if date == key[0:8]:
@@ -71,9 +71,9 @@ def report_daily(data,date):
 
 def report_historical(data):
     display = "============================== HISTORICAL REPORT ===========================\n"
-    display = display + "			             Minimum      Maximum   Minumum   Maximum     Total\n"
-    display = display +"Date                  Temperature  Temperature  Humidity  Humidity  Rainfall\n"
-    display = display+"====================  ===========  ===========  ========  ========  ========\n"
+    display = display + "                          Minimum      Maximum   Minumum   Maximum     Total\n"
+    display = display + "Date                  Temperature  Temperature  Humidity  Humidity  Rainfall\n"
+    display = display + "====================  ===========  ===========  ========  ========  ========\n"
     h=''
     for key in data:
         if h == key [0:8]:
@@ -81,8 +81,8 @@ def report_historical(data):
         else:
             h = key[0:8]
             m = calendar.month_name[int(h[4:6])] + " " + str(int(h[6:8]))+ ", " + str(int(h[0:4]))
-            min_temp = min_temperture(data,h)
-            max_temp = max_temperture(data,h)
+            min_temp = min_temperature(data,h)
+            max_temp = max_temperature(data,h)
             min_hum = min_humidity (data,h)
             max_hum = max_humidity(data,h)
             rain = tot_rain(data,h)
